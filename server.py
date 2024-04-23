@@ -39,7 +39,7 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
-    return app.send_static_file("index.html")
+    return app.send_static_file("public\\index.html")
 
 
 @app.route("/api")
