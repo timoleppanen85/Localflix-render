@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, send_file, session
 from data.connector import (
     create_new_flix,
     get_all_flix,
@@ -39,7 +39,7 @@ def login_required(f):
 @app.route("/")
 @login_required
 def index():
-    return app.send_static_file("public\\index.html")
+    return send_file("public\\index.html")
 
 
 @app.route("/api")
