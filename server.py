@@ -1,5 +1,5 @@
 from functools import wraps
-from flask import Flask, request, jsonify, send_file, session
+from flask import Flask, request, jsonify, send_file, send_from_directory, session
 from data.connector import (
     create_new_flix,
     get_all_flix,
@@ -13,7 +13,7 @@ from user.routes import user_bp
 from datetime import timedelta
 
 # App settings
-app = Flask(__name__, static_folder="/public", static_url_path="/public")
+app = Flask(__name__, static_url_path="", static_folder="public")
 app.register_blueprint(user_bp)
 app.secret_key = os.environ.get("LOCALFLIX_SECRET")
 app.permanent_session_lifetime = timedelta(days=30)
@@ -37,9 +37,9 @@ def login_required(f):
 
 
 @app.route("/")
-@login_required
+# @login_required
 def index():
-    return send_file("index.html")
+    return send_file("public\\index.html")
 
 
 @app.route("/api")
