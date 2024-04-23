@@ -13,7 +13,7 @@ from user.routes import user_bp
 from datetime import timedelta
 
 # App settings
-app = Flask(__name__, static_url_path="", static_folder="public")
+app = Flask(__name__, static_url_path="", static_folder="static")
 app.register_blueprint(user_bp)
 app.secret_key = os.environ.get("LOCALFLIX_SECRET")
 app.permanent_session_lifetime = timedelta(days=30)
@@ -39,7 +39,7 @@ def login_required(f):
 @app.route("/")
 # @login_required
 def index():
-    return send_file("public\\index.html")
+    return send_file("static\\index.html")
 
 
 @app.route("/api")
